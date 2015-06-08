@@ -6,7 +6,7 @@ Port 22
 User git
 
 #operational servers
-Host *.inasafe.com
+Host *.inasafe.org
     IdentitiesOnly yes
     RSAAuthentication yes
     Compression yes
@@ -17,7 +17,7 @@ Host *.inasafe.com
 #debian proxmox hosts
 Host inasafeprox1
 User root
-Hostname proxmox1.inasafe.com 
+Hostname proxmox1.inasafe.org 
 Port 8697
 #password: ask Gavin / Jurgen / Tom
 

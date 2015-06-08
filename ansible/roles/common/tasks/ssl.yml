@@ -1,17 +1,4 @@
 ---
-- name: create directory for @Planet CA certificates
-  file: path=/usr/share/ca-certificates/ATPLANET
-         state=directory mode=0755
-- name: install @Planet CA certificates
-  copy: src=ssl/CA/{{ item }}
-        dest=/usr/share/ca-certificates/ATPLANET/{{ item }}
-        mode=0644
-  with_items: ssl_ca_certificates
-  register: ca_certificates
-- name: enable @Planet CA certificates
-  lineinfile: dest=/etc/ca-certificates.conf line="ATPLANET/{{ item }}"
-  with_items: ssl_ca_certificates
-  register: ca_certs_enabled
 - name: reconfigure ca-certificates
   command: dpkg-reconfigure -f noninteractive ca-certificates
-  when: ca_certificates.changed or ca_certs_enabled.changed
+#  when: ca_certificates.changed or ca_certs_enabled.changed

@@ -5,5 +5,5 @@
   hostname: name={{ inventory_hostname }}
 - name: set mailer name
   copy: dest=/etc/mailname content={{ inventory_hostname }} mode=0644
-- name: set nameservers
-  template: src=resolv.conf.j2 dest=/etc/resolv.conf
+#- name: set nameservers
+#  template: src=resolv.conf.j2 dest=/etc/resolv.conf
