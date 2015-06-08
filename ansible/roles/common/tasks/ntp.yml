@@ -1,0 +1,6 @@
+---
+- name: install ntpd
+  apt: pkg=ntp state=present
+- name: configure ntpd
+  template: src=ntp.conf.j2 dest=/etc/ntp.conf mode=0644
+  notify: restart ntp

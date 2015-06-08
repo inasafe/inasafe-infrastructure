@@ -1,0 +1,11 @@
+---
+- name: initial setup
+  gather_facts: False
+  hosts: all
+  tags: setup
+  sudo: yes
+  tasks:
+    - name: ensure python installed
+      raw: "which python || ( apt-get update && /usr/bin/apt-get -y install python )"
+    - name: install python-apt
+      raw: "dpkg -l | grep '^ii  python-apt' || ( apt-get update && apt-get -y install python-apt )"

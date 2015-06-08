@@ -1,0 +1,15 @@
+search inasafe.com
+{% if dns_custom_servers is defined %}
+{% for ip in dns_custom_servers %}
+nameserver {{ ip }}
+{% endfor %}
+{% endif %}
+{% if use_upstream_dns %}
+{% for ip in dns_upstream_servers %}
+nameserver {{ ip }}
+{% endfor %}
+{% else %}
+{% for ip in dns_local_servers %}
+nameserver {{ ip }}
+{% endfor %}
+{% endif %}

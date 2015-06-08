@@ -1,0 +1,7 @@
+---
+ssh_authorized_keys:
+  - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDc0mIzMpb7zDoxvdas1vBJs26Czd82QpDbfZjBoiSOSP5i/HhZL9Wbvwq+kXsS/VYJwGm4bibgrfkdWKeNecnAede//JTSxs1O75ABtRum2IUItG21qUpf80S7VTqvApId9msWKdCmrUXHb5kKdSQRtvOmAD1KLSC3zWFgw5WV0KJ3oMRCKCAJpgP4EYoQIYxw94U2RWzi+msn5xRiNt/eTWLGETy9kjNU/lbR4dYopr+w5/divkxjiFmFmCtz2Gk5+fF7eg2LkHyJkfj7yoEotDdkBOlxjG+uvuJqRTCh1SRRu+V+Tyyr6VYp6pjaKVCw5G3OklNUFnEZAE0QhIj5 tom@atplanet.co.za
+ssl_ca_certificates:
+  - ATPLANET_CA.crt
+  - ATPLANET_Customer_CA_bundle.crt
+  - ATPLANET_Customer_CA.crt

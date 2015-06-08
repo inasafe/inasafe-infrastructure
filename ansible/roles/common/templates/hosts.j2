@@ -1,0 +1,17 @@
+# IPv4
+127.0.0.1 localhost
+{% if hosts_file is defined %}
+{% for host in hosts_file %}
+{{ host.ip_address }} {{ host.hostnames }}
+{% endfor %}
+{% else %}
+{{ ansible_default_ipv4['address'] }} {{ ansible_fqdn }} {{ ansible_hostname }}
+{% endif %}
+
+# IPv6
+::1 ip6-localhost ip6-loopback
+fe00::0 ip6-localnet
+ff00::0 ip6-mcastprefix
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+ff02::3 ip6-allhosts

@@ -1,0 +1,6 @@
+---
+- name: cluster configuration
+  hosts: proxmox1.inasafe.com
+  tasks:
+    - name: create cluster
+      command: pvecm create inasafe

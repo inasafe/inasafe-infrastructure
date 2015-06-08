@@ -1,0 +1,23 @@
+#Ansible infrastructure
+Host code.atplanet.co.za
+ChallengeResponseAuthentication no
+PasswordAuthentication no
+Port 22
+User git
+
+#operational servers
+Host *.inasafe.com
+    IdentitiesOnly yes
+    RSAAuthentication yes
+    Compression yes
+    IdentityFile ~/.ssh/id_rsa
+    ForwardAgent yes
+    Port 8697
+
+#debian proxmox hosts
+Host inasafeprox1
+User root
+Hostname proxmox1.inasafe.com 
+Port 8697
+#password: ask Gavin / Jurgen / Tom
+
