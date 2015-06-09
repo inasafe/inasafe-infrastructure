@@ -8,7 +8,4 @@ backup_directories:
   - /var/backups
   - /var/log
   - /var/spool/cron/crontabs
-hosts_file:
-#  - ip_address: 192.168.100.1
-#    hostnames: za1.tracks4africa.net za1
 use_upstream_dns: no

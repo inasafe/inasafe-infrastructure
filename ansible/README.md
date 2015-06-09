@@ -20,25 +20,25 @@ Optionally, add the following entries to your `/etc/hosts` file so that you
 and your vagrants can resolve their hostnames when DNS is down (i.e. when you
 are not connected to the Internet).
 ```
-10.0.3.3  web1-dev.tracks4africa.net web1-dev
-10.0.3.4  db1-dev.tracks4africa.net db1-dev
+10.0.3.3  web1-dev.inasafe.org web1-dev
+10.0.3.4  db1-dev.inasafe.org db1-dev
 ```
 
 
 DEPLOYMENT EXAMPLES
 ===================
 
-Some deployment examples for the `t4a_django` project, which uses the `t4a`
+Some deployment examples for the `InaSafe_django` project, which uses the `InaSafe`
 Ansible role.
 
 Deploy the feature/foo branch in development environment
 ```
-ansible-playbook -i development.ini site.yml -t t4a -e t4a_branch=feature/foo
+ansible-playbook -i development.ini site.yml -t InaSafe -e InaSafe_branch=feature/foo
 ```
 
 Deploy the default branch (production) to stage environment
 ```
-ansible-playbook -i stage.ini site.yml -t t4a
+ansible-playbook -i stage.ini site.yml -t InaSafe
 ```
 
 
@@ -49,16 +49,13 @@ You will require Ansible version 1.5 or newer in order to run all the playbooks
 in this repository. See the Ansible website for information on how to obtain
 the latest version for your platform.
 
-You will also require Java 6/7 applet support in your web browser. Oracle/Sun
-and OpenJDK are both supported.
-
 1.  Log in to the Proxmox web interface by browsing to
-    https://za1.tracks4africa.net:8006.
+    https://za1.inasafe.org:8006.
     Create the virtual machine with the following settings.
 
         General:
           Node: select an appropriate initial node host
-          Name: full hostname, e.g. web2.tracks4africa.net
+          Name: full hostname, e.g. web2.inasafe.org
         OS:
           Linux 3.X/2.X kernel
         CD/DVD:
@@ -98,7 +95,7 @@ and OpenJDK are both supported.
     guidance on Ubuntu or Debian installations.
 
 7.  Create a DNS 'A' record for the server in the form
-    "newserverX.tracks4africa.net" and point it to the IP addresses you entered
+    "newserverX.inasafe.org" and point it to the IP addresses you entered
     during installation.
 
 8.  Once the installation is complete, reboot the VM and log in as root (you
@@ -113,15 +110,15 @@ and OpenJDK are both supported.
     the parent directory if it does not exist. 
 
 11. Test a remote login by executing on your workstation:
-    `ssh -p22 root@newserverX.tracks4africa.net`
+    `ssh -p22 root@newserverX.inasafe.org`
 
 12. Add an entry under the relevant group in the inventory file (production.ini)
     in this repository with the following paramaters:
-    `newserverX.tracks4africa.net ansible_ssh_port=22 ansible_ssh_user=root`
+    `newserverX.inasafe.org ansible_ssh_port=22 ansible_ssh_user=root`
 
 13. Provision the server using Ansible by running the following command on your
     workstation, from the same directory as this README.
-    `ansible-playbook -i production.ini --limit newserverX.tracks4africa.net site.yml`
+    `ansible-playbook -i production.ini --limit newserverX.inasafe.org site.yml`
 
 14. In the Proxmox web UI, select the VM and click the `Hardware` tab. Double
     click on the `CD/DVD Drive` item and select `Do not use any media`. This
@@ -130,7 +127,7 @@ and OpenJDK are both supported.
 
 15. Once Ansible has provisioned the server, amend the previously added
     inventory entry and remove the parameters after the hostname, for example:
-    `newserverX.tracks4africa.net`
+    `newserverX.inasafe.org`
 
 TO BUILD A PROXMOX CLUSTER
 ==========================
@@ -140,8 +137,6 @@ cluster from a minimal Debian 7 install, as provided by Hetzner's Linux
 installation system.
 
 1. Create a DNS 'A' record for each server pointing to each host's IP address:
-     - za1.tracks4africa.net - 197.189.211.98
-     - za2.tracks4africa.net - 197.189.211.99
 
 2. Activate the 64-bit rescue mode from within konsoleH and reboot each server
 
@@ -158,7 +153,7 @@ installation system.
         SWRAID 1
         SWRAIDLEVEL 1
         BOOTLOADER grub
-        HOSTNAME newserverX.tracks4africa.net
+        HOSTNAME newserverX.inasafe.org
         PART /boot ext3 512M
         PART lvm vg_hostname 100G
         PART /tmp/dummy ext2 all
@@ -198,38 +193,23 @@ HOST DETAILS
 
 ### Network Configuration
 
-- Network Address: 197.189.211.97/27
-- Address Range: 197.189.211.96 - 197.189.211.127
-- Netmask: 255.255.255.224
-- Broadcast: 197.189.211.127
-- Gateway: 197.189.211.97
-- Nameservers: 197.189.211.98, 197.189.211.99
 
 
 ### Physical Servers
 
 Hostname              | Primary IP Address | BMC IP Address  | BMC User | BMC Pass | Hetzner Name
 ----------------------|--------------------|-----------------|----------|----------|--------------------------------
-za1.tracks4africa.net | 197.189.211.98     | 197.189.210.230 | client   | cxg8Ewiq | tra007\_truservplus\_jhb1\_001
-za2.tracks4africa.net | 197.189.211.99     | 197.189.210.238 | client   | UP48i8iM | tra007\_truservplus\_jhb1\_002
+proxmox.inasafe.org | 5.9.108.141     | ?? | client   |  | 
 
 
 ### Virtual Servers
 
 VM ID | Hostname                     | IP Address      | Storage Volume
 -----:|------------------------------|-----------------|----------------
-100   | web1.tracks4africa.net       | 197.189.211.100 | 100GB
-101   | web2.tracks4africa.net       | 197.189.211.101 | 20GB
-102   | vcs1.tracks4africa.net       | 197.189.211.102 | 30GB
-103   | mon1.tracks4africa.net       | 197.189.211.103 | -
-104   | db1.tracks4africa.net        | 197.189.211.104 | 150GB
-105   | map1.tracks4africa.net       | 197.189.211.105 | 200GB
-106   | db2.tracks4africa.net        | 197.189.211.106 | 20GB
-107   | sysadmin1.tracks4africa.net  | 197.189.211.107 | -
-108   | db3.tracks4africa.net        | 197.189.211.108 | 50GB
-109   | backup1.tracks4africa.net    | 197.189.211.109 | 30GB
-110   | web1-stage.tracks4africa.net | 197.189.211.110 | 50GB
-111   | db1-stage.tracks4africa.net  | 197.189.211.111 | 50GB
+100   | geonode.inasafe.org       | 10.10.10.11 | 20GB + 1TB
+101   | docker.inasafe.org       |  10.10.10.10 | 20GB +1TB
+102   | geonode-stage.inasafe.org       |  10.10.10.12 | 20GB +512G
+999   | vfw1.inasafe.org  | 5.9.166.170 | 8GB
 
 
 NOTES ON UBUNTU INSTALLATION
@@ -243,7 +223,7 @@ NOTES ON UBUNTU INSTALLATION
 - Network configuration method: Configure network manually
 - IP Address/Netmask/Gateway/Nameservers:
     see HOST DETAILS section above
-- Hostname: newserverX.tracks4africa.net
+- Hostname: newserverX.inasafe.org
 - Full name for the new user: Ubuntu
 - Username for your account: ubuntu
 - Choose a password: any temporary password (remember it)
@@ -270,7 +250,7 @@ NOTES ON DEBIAN INSTALLATION
 - Configure network manually
 - IP address/netmask/gateway/nameservers:
     see HOST DETAILS section above
-- Hostname: xxx.tracks4africa.net
+- Hostname: xxx.inasafe.org
 - Root password: any temporary password
 - Full name for new user: Debian
 - Username: debian

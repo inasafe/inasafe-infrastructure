@@ -52,12 +52,3 @@ Host *
     GSSAPIAuthentication yes
     GSSAPIDelegateCredentials no
 
-Host office.tracks4africa.net
-   Port 2323
-
-Host *-dev.tracks4africa.net
-    Port 22
-
-Host *.tracks4africa.net *.tracks4africa.co.za
-    Port 8697
-    StrictHostKeyChecking no
