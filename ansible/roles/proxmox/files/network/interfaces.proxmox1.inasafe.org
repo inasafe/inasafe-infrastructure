@@ -2,28 +2,22 @@
 auto lo
 iface lo inet loopback
 
+auto eth0
 iface eth0 inet manual
 
 # Bridged uplink
 auto vmbr0
 iface vmbr0 inet static
-  address   197.189.211.98
+  address   5.9.108.141
   netmask   255.255.255.224
-  gateway   197.189.211.97
-  broadcast 197.189.211.127
-  up ip addr add 197.189.210.226/29 dev vmbr0
+  gateway   5.9.108.129
   # default route to access subnet
-  #up route add -net 197.189.210.224 netmask 255.255.255.248 gw 197.189.210.225 eth0
+  up route add -net 5.9.108.128 netmask 255.255.255.224 gw 5.9.108.129 eth0
   bridge_ports eth0
   bridge_stp off
   bridge_fd 0
   bridge_maxwait 0
 
-# Backlink interface
-auto eth1
-iface eth1 inet static
-  address 192.168.100.1
-  netmask 255.255.255.0
 
 auto vmbr100
 iface vmbr100 inet manual

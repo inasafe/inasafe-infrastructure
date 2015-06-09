@@ -1,4 +1,0 @@
----
-- name: reconfigure ca-certificates
-  command: dpkg-reconfigure -f noninteractive ca-certificates
-#  when: ca_certificates.changed or ca_certs_enabled.changed

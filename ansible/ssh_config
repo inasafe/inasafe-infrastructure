@@ -1,9 +1,3 @@
-#Ansible infrastructure
-Host code.atplanet.co.za
-ChallengeResponseAuthentication no
-PasswordAuthentication no
-Port 22
-User git
 
 #operational servers
 Host *.inasafe.org

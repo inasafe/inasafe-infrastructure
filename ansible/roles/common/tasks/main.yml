@@ -2,17 +2,8 @@
 - include: packages.yml
 - include: ssh.yml
 
-- include: raid.yml
-  when: hosting_environment != 'development'
 - include: network.yml
-  when: hosting_environment != 'development'
-- include: ntp.yml
-  when: hosting_environment != 'development'
-- include: ssl.yml
-  when: hosting_environment != 'development'
 
-- name: disable dummy mount point
-  mount: name=/tmp/dummy src=/dev/md2 fstype=ext2 state=absent
 - name: delete stock users
   user: name={{ item }} remove=yes state=absent
   with_items:
@@ -24,8 +15,4 @@
   copy: src=environment dest=/etc/environment
 - name: configure sudo
   copy: src=sudoers dest=/etc/sudoers owner=root group=root mode=0440
-  when: hosting_environment != 'development'
 
-- name: configure email aliases
-  template: src=aliases.j2 dest=/etc/aliases
-  notify: newaliases

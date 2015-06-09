@@ -12,3 +12,5 @@
   roles:
     - role: proxmox
       tags: proxmox
+
+- include: users.yml

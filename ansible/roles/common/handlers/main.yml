@@ -1,7 +1,3 @@
 ---
-- name: newaliases
-  command: newaliases
-- name: restart ntp
-  service: name=ntp state=restarted
 - name: restart sshd
   service: name=ssh state=restarted

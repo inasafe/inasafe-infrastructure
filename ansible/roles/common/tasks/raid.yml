@@ -1,8 +1,0 @@
----
-- name: get raid array configuration
-  shell: "if [ -x /usr/share/mdadm/mkconf ]; then /usr/share/mdadm/mkconf | head -n -2; fi"
-  register: mdadm_conf
-  changed_when: False
-- name: configure raid array(s)
-  copy: 'content="{{ mdadm_conf.stdout }}\n" dest=/etc/mdadm/mdadm.conf'
-  when: mdadm_conf.stdout != ''
