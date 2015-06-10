@@ -1,0 +1,10 @@
+---
+- hosts: all
+  sudo: yes
+  roles:
+    - role: apt
+      tags: apt
+  tasks:
+    - name: update/upgrade packages
+      apt: upgrade=safe update_cache=yes
+      tags: upgrade

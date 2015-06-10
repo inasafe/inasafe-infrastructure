@@ -1,0 +1,8 @@
+---
+- name: disable enterprise repository
+  file: path=/etc/apt/sources.list.d/pve-enterprise.list state=absent
+- name: configure network interfaces
+  copy: src=network/interfaces.{{ ansible_fqdn }} dest=/etc/network/interfaces
+  notify: restart networking
+- name: configure lvm
+  copy: src=lvm.conf dest=/etc/lvm/lvm.conf
