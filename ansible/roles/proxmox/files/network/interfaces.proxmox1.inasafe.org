@@ -1,0 +1,41 @@
+# Loopback device:
+auto lo
+iface lo inet loopback
+
+auto eth0
+iface eth0 inet manual
+
+# Bridged uplink
+auto vmbr0
+iface vmbr0 inet static
+  address   5.9.108.141
+  netmask   255.255.255.224
+  gateway   5.9.108.129
+  # default route to access subnet
+  up route add -net 5.9.108.128 netmask 255.255.255.224 gw 5.9.108.129 eth0
+  bridge_ports eth0
+  bridge_stp off
+  bridge_fd 0
+  bridge_maxwait 0
+
+
+auto vmbr100
+iface vmbr100 inet manual
+	bridge_ports none
+	bridge_stp off
+	bridge_fd 0
+	bridge_maxwait 0
+
+auto vmbr200
+iface vmbr200 inet manual
+	bridge_ports none
+	bridge_stp off
+	bridge_fd 0
+	bridge_maxwait 0
+
+auto vmbr300
+iface vmbr300 inet manual
+	bridge_ports none
+	bridge_stp off
+	bridge_fd 0
+	bridge_maxwait 0
