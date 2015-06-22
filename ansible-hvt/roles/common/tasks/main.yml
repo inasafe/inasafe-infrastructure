@@ -1,6 +1,5 @@
 ---
 - include: packages.yml
-- include: ssh.yml
 
 - include: network.yml
 
@@ -17,3 +16,4 @@
 - name: configure sudo
   copy: src=sudoers dest=/etc/sudoers owner=root group=root mode=0440
 
+- include: ssh.yml

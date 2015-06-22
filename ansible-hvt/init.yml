@@ -5,9 +5,4 @@
 - hosts: all
   sudo: yes
   roles:
-    - role: common
-
-  handlers:
-
-  - name: reboot
-    shell: /sbin/reboot
+    - role: common-bootstrap
