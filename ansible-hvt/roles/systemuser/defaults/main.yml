@@ -1,0 +1,5 @@
+---
+user_groups:
+  - staff
+  - sudo
+shell: /bin/bash
