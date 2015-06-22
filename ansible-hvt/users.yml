@@ -6,8 +6,9 @@
     - role: systemuser
       user: gavin
       password: $6$rounds=100000$3l9EKa3HpB8axDvi$aYiuFZx2vJH5tI2CVXpi5PJrCijYVwRRAv2OOza2gEN/uc71qqlMJrQl3DejQ9j1.DISmfltT6aZHo6uV97K90 # UtjSfrxPPSu6
-      sshkey: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCrJ1+fRCnNbTpvRBKgcesK/Pj9tY/Wd+ZYI/HuwNFyu6oTRlnrFnxyckw8fg42OdSUnN9FggmWbnyRaFnbh0N9OPR4rDewf1lDVOXVCnTn/eI6+lGtg1xxY7uVTcUAoeqcXzLR+qfXjssdPUxrUd8w7X52WRdWB8wqgCNZX/sRJNFJEiIchL8Celx/PnNhCtGH+pUYwhH2P6migGChLOj2mSLINvPvoHB3JpGkdAku+s45MoT2tTLZ01yFTf2TywN0ZL2rBGKSbZgJt10fos1eMCwWCY54sKFYWlHCkewROM1SX6l9n97+SDKItvknN5GKXe11hm8sBW0HqEUMH351 gavin@afrispatial.local"
     - role: systemuser
       user: hvisage
       password: $6$rounds=100000$/vjaaqp6.s.1RDdJ$AiIxK4GNQTNyNNIN1gtz8hNIQFhfnCdxkyRCyHHLycWBlqFSvCQ6oLnlW2H1Sf6zIPgW3tTnEuEvcPBen2b6D0 # pfjjWqeRZtJd2
-      sshkey: "{{ lookup('file', 'files/hvisage.pub')}}"
+    - role: systemuser
+      user: richard
+      password: $6$rounds=1234$ThisDontWork
