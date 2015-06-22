@@ -3,5 +3,3 @@
   template: src=hosts.j2 dest=/etc/hosts
 - name: set hostname
   hostname: name={{ inventory_hostname }}
-- name: set mailer name
-  copy: dest=/etc/mailname content={{ inventory_hostname }} mode=0644

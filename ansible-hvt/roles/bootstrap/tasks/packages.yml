@@ -3,21 +3,7 @@
 - name: install useful packages
   apt: pkg={{ item }} update_cache=yes state=present
   with_items:
-    - byobu
-    - lsof
     - sshguard
     - fail2ban
-    - iftop
-    - iotop
-    - iptraf
-    - netcat-traditional
-    - nmap
-    - screen
     - sudo
-    - sysstat
-    - tcptraceroute
-    - telnet
-    - tmux
-    - traceroute
     - vim-nox
-    - zsh
