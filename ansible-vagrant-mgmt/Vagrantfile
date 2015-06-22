@@ -10,10 +10,12 @@ Vagrant.configure(2) do |config|
   config.vm.define :mgmt do |mgmt_config|
       mgmt_config.vm.box = "parallels/ubuntu-14.04"
       mgmt_config.vm.hostname = "mgmt"
-      mgmt_config.vm.network :public_network
+      mgmt_config.vm.network "public_network", bridge: 'en0'
+      mgmt_config.vm.synced_folder "../ansible-hvt", "/ansible-hvt", create: true, owner: "root", group: "root"
 #      mgmt_config.vm.network :private_network, ip: "10.0.15.10"
       mgmt_config.vm.provider "parallels" do |vpar|
         vpar.memory = "256"
+        vpar.update_guest_tools = true
       end
       mgmt_config.vm.provision :shell, path: "bootstrap-mgmt.sh"
   end

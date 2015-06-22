@@ -10,4 +10,4 @@
     - role: systemuser
       user: hvisage
       password: $6$rounds=100000$/vjaaqp6.s.1RDdJ$AiIxK4GNQTNyNNIN1gtz8hNIQFhfnCdxkyRCyHHLycWBlqFSvCQ6oLnlW2H1Sf6zIPgW3tTnEuEvcPBen2b6D0 # pfjjWqeRZtJd2
-      sshkey: "{{ lookup('file', 'hvisage.pub')}}"
+      sshkey: "{{ lookup('file', 'files/hvisage.pub')}}"
