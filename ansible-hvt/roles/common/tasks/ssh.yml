@@ -13,11 +13,6 @@
   when: authorized_keys_test.stdout != 'link'
 - name: configure ssh client
   copy: src=ssh_config dest=/etc/ssh/ssh_config
-#HV: I don't know what/why this does:
-#- name: configure pam_abl
-#  copy: src=pam_abl.conf dest=/etc/security/pam_abl.conf
-- name: configure pam for sshd to use pam_abl
-  copy: src=sshd dest=/etc/pam.d/sshd
 - name: configure sshd
   template: src=sshd_config.j2 dest=/etc/ssh/sshd_config
   notify: restart sshd

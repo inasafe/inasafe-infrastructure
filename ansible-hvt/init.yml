@@ -6,3 +6,9 @@
   sudo: yes
   roles:
     - role: common
+
+  tasks:
+
+  - name: reboot
+    shell: /sbin/reboot
+    

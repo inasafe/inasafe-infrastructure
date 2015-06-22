@@ -4,7 +4,7 @@
 apt-get -y install software-properties-common
 apt-add-repository -y ppa:ansible/ansible
 apt-get update
-apt-get -y install ansible git
+apt-get -y install ansible git passlib
 
 # copy examples into /home/vagrant (from inside the mgmt node)
 #cp -a /vagrant/examples/* /home/vagrant
