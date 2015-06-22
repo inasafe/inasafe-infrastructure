@@ -107,7 +107,7 @@ the latest version for your platform.
 9.  Set a root password if the installer did not set one for you.
 
 10. Place your SSH pubkey into the `/root/.ssh/authorized_keys` file, creating
-    the parent directory if it does not exist. 
+    the parent directory if it does not exist.
 
 11. Test a remote login by executing on your workstation:
     `ssh -p22 root@newserverX.inasafe.org`
@@ -199,7 +199,7 @@ HOST DETAILS
 
 Hostname              | Primary IP Address | BMC IP Address  | BMC User | BMC Pass | Hetzner Name
 ----------------------|--------------------|-----------------|----------|----------|--------------------------------
-proxmox.inasafe.org | 5.9.108.141     | ?? | client   |  | 
+proxmox.inasafe.org | 5.9.108.141     | ?? | client   |  |
 
 
 ### Virtual Servers
@@ -279,3 +279,43 @@ when setting passwords for user accounts using the Ansible user module. This
 module is used extensively wherever system users are created or managed.
 
 Usage example: `./mkpasswd mynewpassword`
+
+GAVINS' MISCELLANEOUS ANSIBLE PLAYS
+===================================
+Ensure you have configs for each machine in your ~/.ssh/config, e.g.
+
+Ensure these don't conflict with host_vars
+
+```
+Host geonode.inasafe.org
+   User gavin
+   Port 22
+   HostName 5.9.160.105
+   IPQos cs0
+
+Host geonode-stage.inasafe.org
+   User ubuntu
+   Port 22
+   HostName 5.9.160.106
+   IPQos cs0  
+   #passwd InaSafe
+```
+Run these from within the ansible dir.
+
+As 'ubuntu' (which was the initial user created by Hendrik), create users on geonode staging machine. -kK means pass in ssh and sudo passwds.
+```
+ansible-playbook -i stage.ini users.yml -kK
+ansible-playbook -i production.ini users.yml -kK --limit geonode.inasafe.org
+```
+Thereafter run plays as yourself (assuming you are in users.yml)
+
+runing setup.yml as gavin now (still passing in sudo passwd)
+```
+ansible-playbook -i stage.ini setup.yml -K
+ansible-playbook -i production.ini setup.yml -K --limit geonode.inasafe.org
+```
+Installing geonode
+```
+ansible-playbook -i stage.ini geonode.yml -K
+ansible-playbook -i production.ini geonode.yml -K --limit geonode.inasafe.org
+```
