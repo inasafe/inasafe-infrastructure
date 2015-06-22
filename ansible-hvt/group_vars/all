@@ -1,0 +1,5 @@
+root_password_crypted: $6$FHOvGjVB8eOqRu1j$2ZWUfVocxoL4xH3PLgPQHq1Emu6uZOFdBKMVoVhBuS6fpCw8SMNrT96ZKs80p2ChmIWrTktmqRLx2F8aFJ.F90
+
+ssh_allowed_groups: backup root staff
+
+ansible_ssh_port: 8697
