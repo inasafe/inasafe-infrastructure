@@ -1,0 +1,8 @@
+---
+
+- include: users.yml
+
+- hosts: all
+  sudo: yes
+  roles:
+    - role: common

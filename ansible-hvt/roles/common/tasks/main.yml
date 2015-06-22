@@ -1,0 +1,18 @@
+---
+- include: packages.yml
+- include: ssh.yml
+
+- include: network.yml
+
+- name: delete stock users
+  user: name={{ item }} remove=yes state=absent
+  with_items:
+    - debian
+    - ubuntu
+#- name: specify that inconsistent filesystems should be auto-repaired on boot
+#  copy: dest=/etc/default.rcS src=rcS
+- name: configure environment variables
+  copy: src=environment dest=/etc/environment
+- name: configure sudo
+  copy: src=sudoers dest=/etc/sudoers owner=root group=root mode=0440
+
