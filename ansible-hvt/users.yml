@@ -15,3 +15,15 @@
     - role: systemuser
       user: tim
       password: $6$rounds=1234$ThisDontWork
+    - role: systemuser
+      user: christian
+      password: $6$rounds=1234$ThisDontWork
+    - role: systemuser
+      user: etienne
+      password: $6$rounds=1234$ThisDontWork
+    - role: systemuser
+      user: maria
+      password: $6$rounds=1234$ThisDontWork
+    - role: systemuser
+      user: rizky
+      password: $6$rounds=1234$ThisDontWork
