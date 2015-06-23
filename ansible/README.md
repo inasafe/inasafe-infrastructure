@@ -28,17 +28,17 @@ are not connected to the Internet).
 DEPLOYMENT EXAMPLES
 ===================
 
-Some deployment examples for the `InaSafe_django` project, which uses the `InaSafe`
+Some deployment examples for the `InaSAFE_django` project, which uses the `InaSAFE`
 Ansible role.
 
 Deploy the feature/foo branch in development environment
 ```
-ansible-playbook -i development.ini site.yml -t InaSafe -e InaSafe_branch=feature/foo
+ansible-playbook -i development.ini site.yml -t InaSAFE -e InaSAFE_branch=feature/foo
 ```
 
 Deploy the default branch (production) to stage environment
 ```
-ansible-playbook -i stage.ini site.yml -t InaSafe
+ansible-playbook -i stage.ini site.yml -t InaSAFE
 ```
 
 
@@ -298,7 +298,7 @@ Host geonode-stage.inasafe.org
    Port 22
    HostName 5.9.160.106
    IPQos cs0  
-   #passwd InaSafe
+   #passwd InaSAFE
 ```
 Run these from within the ansible dir.
 
