@@ -1,0 +1,10 @@
+---
+
+- hosts:
+    - geonode-stage.inasafe.org
+    - geonode.inasafe.org
+  tags: geonode
+  sudo: yes
+  roles:
+    - role: geonode
+      tags: geonode
