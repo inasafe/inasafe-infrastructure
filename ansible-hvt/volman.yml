@@ -1,5 +1,6 @@
 ---
-
+#HV: NOTE: This should not (LIGHTLY) be run from a "standard"/normal playbook,
+# as these are suppose to do bootstrapping of the filesystems
 - hosts: all
   sudo: yes
   tasks:
@@ -13,12 +14,16 @@
   #OPerhaps that should be changed to the root user from the start, but several distros don't "allow" remote
   # root etc. as a "base" installation.
   #Perhaps I first have to "move_home" the ubuntu user to /home_tmp then do the mounting of volumes, and then I can 
-  # do the rest of the users....
+  # do the rest of the users.... doesn;t work either
+  # I need to do a pre-bootstrap stage, where I setup the root user a temporary ssh key/password to use that 
+  # for this stage to be able to clear the ubuntu user, then to mount the filesystems, and lastly to do the 
+  #user creation.... then I would be bootstrapped!!
   vars:
     - homes: /new_home  
   tasks:
-    - name: get ubuntu out of the way
-      user: name=ubuntu move_home=yes home=/home_ubuntu
+#HVT: need to do this NOT as user ubuntu :(
+#    - name: get ubuntu out of the way
+#      user: name=ubuntu move_home=yes home=/home_ubuntu
     - name: create docker volumes
     #This should 400G for production....
       lvol: vg={{ inventory_hostname }}'_vg' lv=dockers size=40%VG state=present
@@ -33,11 +38,11 @@
         src=/dev/{{ inventory_hostname }}'_vg/dockers'
         fstype=xfs name='/var/lib/docker'
         state=mounted
-#HV: this isn't the "Right(TM)" method, but I'm tired and need to get this out the door today:
+#HV: this isn't the "Right(TM)" method, but I'm getting tired and need to get this out the door today:
     - name: mount filesystem
       mount:
         src=/dev/{{ inventory_hostname }}_vg/home
-        fstype=xfs name='/home'
+        fstype=xfs name='/new_home'
         state=mounted
 
 
@@ -56,10 +61,10 @@
       mount:
         src=/dev/{{ inventory_hostname }}_vg/data
         fstype=xfs name='/usr/share/geoserver/data'
-        state=mounted 
+        state=mounted
     - name: mount filesystems
       mount:
         src=/dev/{{ inventory_hostname }}_vg/backup
         fstype=xfs name='/data/dbbackups'
-        state=mounted   
+        state=mounted
 
