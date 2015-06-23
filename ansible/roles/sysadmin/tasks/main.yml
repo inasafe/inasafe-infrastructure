@@ -1,0 +1,15 @@
+---
+- name: install pip and python headers
+  apt: pkg=python-dev,python-pip state=present
+- name: install ansible
+  pip: name={{ item }} state=present
+  with_items:
+    - ansible
+    - httplib2
+    - jinja2
+    - paramiko
+    - PyYAML
+- name: enable git ppa
+  apt_repository: repo='ppa:git-core/ppa'
+- name: intall latest git
+  apt: pkg=git state=latest update_cache=yes

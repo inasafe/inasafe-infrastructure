@@ -1,0 +1,18 @@
+---
+- include: setup.yml
+
+- hosts: all
+  sudo: yes
+  roles:
+    - role: common
+      tags: common
+
+- include: users.yml
+
+#- hosts: proxmox
+#  sudo: yes
+#  roles:
+#    - role: proxmox
+#      tags: proxmox
+
+#- include: accounts.yml
