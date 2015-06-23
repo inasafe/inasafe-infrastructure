@@ -1,0 +1,65 @@
+---
+
+- hosts: all
+  sudo: yes
+  tasks:
+  - name: create vg
+    lvg: vg={{ inventory_hostname }}'_vg' pvs=/dev/vdb state=present
+
+
+- hosts: docker
+  sudo: yes
+  #HV: The problem here is that I am currently doing the bootstrap on the ubuntu user
+  #OPerhaps that should be changed to the root user from the start, but several distros don't "allow" remote
+  # root etc. as a "base" installation.
+  #Perhaps I first have to "move_home" the ubuntu user to /home_tmp then do the mounting of volumes, and then I can 
+  # do the rest of the users....
+  vars:
+    - homes: /new_home  
+  tasks:
+    - name: get ubuntu out of the way
+      user: name=ubuntu move_home=yes home=/home_ubuntu
+    - name: create docker volumes
+    #This should 400G for production....
+      lvol: vg={{ inventory_hostname }}'_vg' lv=dockers size=40%VG state=present
+    - name: create home volumes
+      lvol: vg={{ inventory_hostname }}'_vg' lv=home size=100%FREE state=present
+    - name: make filesystem
+      filesystem: fstype=xfs dev=/dev/{{ inventory_hostname }}'_vg/dockers'
+    - name: make filesystem
+      filesystem: fstype=xfs dev=/dev/{{ inventory_hostname }}'_vg/home'
+    - name: mount filesystem
+      mount:
+        src=/dev/{{ inventory_hostname }}'_vg/dockers'
+        fstype=xfs name='/var/lib/docker'
+        state=mounted
+#HV: this isn't the "Right(TM)" method, but I'm tired and need to get this out the door today:
+    - name: mount filesystem
+      mount:
+        src=/dev/{{ inventory_hostname }}_vg/home
+        fstype=xfs name='/home'
+        state=mounted
+
+
+- hosts: geonodes
+  sudo: yes
+  tasks:
+    - name: create db volumes
+      lvol: vg={{ inventory_hostname }}'_vg' lv=data size=80%VG state=present
+    - name: create data volumes
+      lvol: vg={{ inventory_hostname }}'_vg' lv=backup size=100%FREE state=present
+    - name: make filesystem
+      filesystem: fstype=xfs dev=/dev/{{ inventory_hostname }}_vg/backup
+    - name: make filesystem
+      filesystem: fstype=xfs dev=/dev/{{ inventory_hostname }}_vg/data
+    - name: mount filesystems
+      mount:
+        src=/dev/{{ inventory_hostname }}_vg/data
+        fstype=xfs name='/usr/share/geoserver/data'
+        state=mounted 
+    - name: mount filesystems
+      mount:
+        src=/dev/{{ inventory_hostname }}_vg/backup
+        fstype=xfs name='/data/dbbackups'
+        state=mounted   
+

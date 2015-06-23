@@ -7,3 +7,4 @@
     - fail2ban
     - sudo
     - vim-nox
+    - xfsprogs

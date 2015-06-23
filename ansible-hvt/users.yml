@@ -12,3 +12,6 @@
     - role: systemuser
       user: richard
       password: $6$rounds=1234$ThisDontWork
+    - role: systemuser
+      user: tim
+      password: $6$rounds=1234$ThisDontWork
