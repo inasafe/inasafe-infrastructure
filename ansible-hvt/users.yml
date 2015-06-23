@@ -13,7 +13,7 @@
       user: richard
       password: $6$rounds=1234$ThisDontWork
     - role: systemuser
-      user: tim
+      user: timlinux
       password: $6$rounds=1234$ThisDontWork
     - role: systemuser
       user: christian
