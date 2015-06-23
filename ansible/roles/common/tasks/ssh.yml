@@ -1,0 +1,22 @@
+---
+- name: set root password and generate ssh key
+  user: name=root generate_ssh_key=yes password={{ root_password_crypted }}
+- name: check if authorized_keys is a regular file
+  shell: if [ -h /root/.ssh/authorized_keys ]; then echo link; fi
+  register: authorized_keys_test
+  changed_when: False
+- name: get root ssh pubkey
+  slurp: src=/root/.ssh/id_rsa.pub
+  register: ssh_root_pubkey
+- name: set root SSH authorised keys
+  template: src=authorized_keys.j2 dest=/root/.ssh/authorized_keys mode=0600
+  when: authorized_keys_test.stdout != 'link'
+- name: configure ssh client
+  copy: src=ssh_config dest=/etc/ssh/ssh_config
+- name: configure pam_abl
+  copy: src=pam_abl.conf dest=/etc/security/pam_abl.conf
+- name: configure pam for sshd to use pam_abl
+  copy: src=sshd dest=/etc/pam.d/sshd
+- name: configure sshd
+  template: src=sshd_config.j2 dest=/etc/ssh/sshd_config
+  notify: restart sshd

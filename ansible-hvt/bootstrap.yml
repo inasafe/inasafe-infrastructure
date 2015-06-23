@@ -1,0 +1,12 @@
+---
+
+
+- hosts: all
+  sudo: yes
+  roles:
+    - role: bootstrap
+
+- include: volman.yml
+
+- include: users.yml
+
