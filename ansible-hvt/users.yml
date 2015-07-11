@@ -5,28 +5,37 @@
   roles:
     - role: systemuser
       user: gavin
+      update_password: on_create
       password: $6$rounds=100000$3l9EKa3HpB8axDvi$aYiuFZx2vJH5tI2CVXpi5PJrCijYVwRRAv2OOza2gEN/uc71qqlMJrQl3DejQ9j1.DISmfltT6aZHo6uV97K90 # UtjSfrxPPSu6
     - role: systemuser
       user: hvisage
+      update_password: on_create
       password: $6$rounds=100000$/vjaaqp6.s.1RDdJ$AiIxK4GNQTNyNNIN1gtz8hNIQFhfnCdxkyRCyHHLycWBlqFSvCQ6oLnlW2H1Sf6zIPgW3tTnEuEvcPBen2b6D0 # pfjjWqeRZtJd2
     - role: systemuser
       user: richard
       password: $6$rounds=1234$ThisDontWork
+      update_password: on_create
     - role: systemuser
       user: timlinux
       password: $6$rounds=1234$ThisDontWork
+      update_password: on_create
     - role: systemuser
       user: christian
       password: $6$rounds=1234$ThisDontWork
+      update_password: on_create
     - role: systemuser
       user: etienne
       password: $6$rounds=1234$ThisDontWork
+      update_password: on_create
     - role: systemuser
       user: maria
       password: $6$rounds=1234$ThisDontWork
+      update_password: on_create
     - role: systemuser
       user: rizky
       password: $6$rounds=1234$ThisDontWork
+      update_password: on_create
     - role: systemuser
       user: realtime
       password: $6$rounds=1234$ThisDontWork
+      update_password: on_create
