@@ -3,6 +3,7 @@
 - name: install useful packages
   apt: pkg={{ item }} update_cache=yes state=present
   with_items:
+    - xfsprogs
     - byobu
     - lsof
     - sshguard

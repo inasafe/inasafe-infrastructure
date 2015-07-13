@@ -1,6 +1,0 @@
----
-ssh_authorized_keys:
-  -
-
-  
-ssh_custom_port: 8697
