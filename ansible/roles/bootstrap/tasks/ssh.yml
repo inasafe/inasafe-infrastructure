@@ -1,0 +1,5 @@
+---
+- name: set root password and generate ssh key
+  user: name=root generate_ssh_key=yes password=$9$IDontWantThisSetNow
+- name: configure sshd
+  template: src=sshd_config.j2 dest=/etc/ssh/sshd_config

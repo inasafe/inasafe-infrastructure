@@ -1,0 +1,4 @@
+---
+#- name: restart sshd
+#  shell: "nohup (sleep 30 ; /sbin/reboot)&"
+#  service: name=ssh state=restarted

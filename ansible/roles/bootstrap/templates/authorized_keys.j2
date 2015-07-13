@@ -1,0 +1,4 @@
+{{ ssh_root_pubkey['content'] | b64decode }}
+{%- for key in ssh_authorized_keys -%}
+{{ key }}
+{%- endfor -%}
