@@ -5,3 +5,4 @@
         state=present
 - name: enable ssh pubkey login
   authorized_key: user={{ user }} manage_dir=yes state=present key="{{ lookup('file', 'pub_keys/'+ user +'.pub') }}"
+
