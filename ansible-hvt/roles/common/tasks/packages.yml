@@ -1,8 +1,10 @@
 ---
 #These are the max that'll be installed for Proxmox host
 - name: install useful packages
+  tags: packages
   apt: pkg={{ item }} update_cache=yes state=present
   with_items:
+    - locales
     - xfsprogs
     - byobu
     - lsof
