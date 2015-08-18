@@ -1,2 +1,0 @@
-trusted_networks:
-  - 10.0.3.0/24        # Vagrant development hosts
