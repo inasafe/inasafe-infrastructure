@@ -3,11 +3,11 @@
 cat << EOF
 
 ====================
-all the "usual" configs for InaSafe VMs
+all the "usual" configs for InaSAFE VMs
 --------------------
 
 EOF
 
 
-ansible-playbook -v -i InaSafe.ini InaSafe.yml
+ansible-playbook -v -i InaSAFE.ini InaSAFE.yml
 
