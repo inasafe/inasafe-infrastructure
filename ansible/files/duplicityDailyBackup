@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Using set -e, we exit immediately on any failure. This will help to warn us if the backups didn't completed given the last Dead Man's Snitch
+#However, no snitches yet configured
+#set -e
+
+DEST=sftp://u109852@u109852.your-backup.de
+BACKUPLIST="dbbackups backups"
+
+for i in $BACKUPLIST
+do
+	duplicity incr /data/$i $DEST
+	duplicity verify --compare-data $DEST /data/$i
+done
+
+#The line below should be configured for each server separately
+#Ie. this should be a template and filled in accordingly...
+
+#curl -q -s https://nosnch.in/SnitchString > /dev/null
+
