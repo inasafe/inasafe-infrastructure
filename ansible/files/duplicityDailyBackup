@@ -4,7 +4,8 @@
 #However, no snitches yet configured
 #set -e
 
-DEST=sftp://u109852@u109852.your-backup.de
+echo "mkdir `hostname`" | sftp u109852@u109852.your-backup.de
+DEST=sftp://u109852@u109852.your-backup.de/`hostname`/
 BACKUPLIST="dbbackups backups"
 
 for i in $BACKUPLIST

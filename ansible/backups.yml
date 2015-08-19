@@ -10,7 +10,12 @@
     - name: confirm duplicity installed
       apt: pkg=duplicity update_cache=no state=present
     - name: /usrlocal/bin
-      file: path=/usr/local/bin mode=0755 owner=root
+      file: path=/usr/local/bin mode=0755 owner=root state=directory
+    - name: Backup dirs
+      file: path={{item}} mode=0777 owner=root state=directory
+      with_items:
+        - /data/backups
+        - /data/dbbackups
     - name: insert scripts for backup File
       copy: src=files/{{ item }} dest=/usr/local/bin mode=0555 owner=root
       with_items:
