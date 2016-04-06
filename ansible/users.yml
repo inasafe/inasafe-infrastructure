@@ -28,5 +28,8 @@
       user: rizky
       password: $6$rounds=1234$ThisDontWork
     - role: systemuser
+      user: ismail
+      password: $6$rounds=1234$ThisDontWork
+    - role: systemuser
       user: realtime
       password: $6$rounds=1234$ThisDontWork
