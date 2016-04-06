@@ -5,17 +5,5 @@
   roles:
     - role: common
 
-- hosts: all
-  sudo: yes
-  roles:
-    - role: "ansible-locale"
-      locale_lang: en_US.UTF-8
-      locale_language: en_US.UTF-8
-      locale_all: en_US.UTF-8
-  tags: locales
-
-
 
 - include: users.yml
-
-- include: backups.yml
