@@ -1,2 +1,6 @@
-trusted_networks:
-  - 10.0.3.0/24        # Vagrant development hosts
+root_password_crypted: $6$wUZ04ausbXc0iKmL$iZ5yhH9o4beopOpFSgmmmICRydiuXF0SVW2R1itkUTH3S2CQFh5GlqM88i82Mfnab8nuSY3iu4Ha5mulG2Nwe.
+#TesterInaSAFE
+
+ssh_allowed_groups: backup root staff
+
+ansible_ssh_port: 8697

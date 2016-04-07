@@ -1,3 +1,0 @@
----
-- name: restart networking
-  shell: ifdown eth0; ifup vmbr0; /etc/init.d/networking restart

@@ -1,6 +1,0 @@
----
-user_groups:
-  - staff
-  - sudo
-  - docker
-shell: /bin/bash

@@ -1,8 +1,0 @@
----
-- name: create system user
-  user: name={{ user }} groups={{ user_groups|join(',') }} createhome=yes
-        update_password=on_create shell={{ shell }} password={{ password }}
-        state=present
-- name: enable ssh pubkey login
-  authorized_key: user={{ user }} manage_dir=yes state=present key="{{ lookup('file', 'pub_keys/'+ user +'.pub') }}"
-

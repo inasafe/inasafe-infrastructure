@@ -1,4 +1,5 @@
-#!/usr/bin/env python
-from passlib.hash import sha512_crypt
-import sys
-print sha512_crypt.encrypt(sys.argv[1])
+#!/bin/bash
+
+#This needs the python passlib library installed
+
+python -c "import crypt,random,string; print crypt.crypt(raw_input('clear-text password: '), '\$6\$' + ''.join([random.choice(string.ascii_letters + string.digits) for _ in range(16)]))"

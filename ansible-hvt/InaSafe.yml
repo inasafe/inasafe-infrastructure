@@ -1,9 +1,0 @@
----
-
-- hosts: all
-  sudo: yes
-  roles:
-    - role: common
-
-
-- include: users.yml
